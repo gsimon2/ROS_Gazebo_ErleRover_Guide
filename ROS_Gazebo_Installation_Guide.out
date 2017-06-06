@@ -24,6 +24,15 @@
 \BOOKMARK [2][-]{subsection.3.6.1}{Add ROS setup to bash}{section.3.6}% 24
 \BOOKMARK [2][-]{subsection.3.6.2}{Add ros\137catkin\137ws setup to bash}{section.3.6}% 25
 \BOOKMARK [0][-]{chapter.4}{Usage}{}% 26
-\BOOKMARK [1][-]{section.4.1}{Basic Erle-Rover Simulation}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.1}{Basic Erle-Rover simulation}{chapter.4}% 27
 \BOOKMARK [2][-]{subsection.4.1.1}{Manually starting all needed processes}{section.4.1}% 28
 \BOOKMARK [2][-]{subsection.4.1.2}{Using scripts to start simulation}{section.4.1}% 29
+\BOOKMARK [1][-]{section.4.2}{Starting MAVProxy via a script}{chapter.4}% 30
+\BOOKMARK [1][-]{section.4.3}{Basic obstacle avoidance simulation using Erle Robotics script}{chapter.4}% 31
+\BOOKMARK [2][-]{subsection.4.3.1}{Manually starting all needed processes}{section.4.3}% 32
+\BOOKMARK [2][-]{subsection.4.3.2}{Using scripts to start simulation}{section.4.3}% 33
+\BOOKMARK [1][-]{section.4.4}{Maze mapping using RViz}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.5}{Line follower simulation}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.6}{Object finder simulation}{chapter.4}% 36
+\BOOKMARK [0][-]{chapter.5}{Troubleshooting}{}% 37
+\BOOKMARK [1][-]{section.5.1}{Rover is not responding to either manual or scripted commands}{chapter.5}% 38

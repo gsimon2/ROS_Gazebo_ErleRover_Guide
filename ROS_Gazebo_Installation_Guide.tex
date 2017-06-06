@@ -50,8 +50,7 @@
 \title
 {
 	\textbf{{ROS-Gazebo-ErleRover Installation and Usage Guide}\\
-	{Michigan State University}\\
-	{ECE 480}\\}
+	{Michigan State University}\\}
 	\includegraphics{Images/MSU_Lab_Cover_Image.png}
 }
 
@@ -279,7 +278,7 @@ This is a public repo and can freely be copied, but for access to submit changes
 This process will bring up the Erle-Rover in a blank world and allow you to manually enter throttle and yaw commands via the MAVProxy terminal.
 \subsection{Manually starting all needed processes}
 The process of starting all processes can be found in more detail at: \\ \href{http://docs.erlerobotics.com/simulation/vehicles/erle_rover/tutorial_1}{http://docs.erlerobotics.com/simulation/vehicles/erle\_rover/tutorial\_1}, but will be covered briefly here.
-\subsubsection{Executing APMrover2}
+\subsubsection{Executing APMrover2}\label{MAVmanual}
 This process requires two active terminals. 
 
 In terminal one enter:
@@ -327,17 +326,153 @@ What we are doing here is override the 3rd channel of the RC, which corresponds 
 	rc 1 1400
 \end{lstlisting}
 
+Note that first we had to use ``param set SYSID\_MYGCS 255''. This tell MAVProxy where the source for rover commands are coming from. To control the rover manually via the MAVProxy terminal, this value must be set to 255. When using scripts to control the rover, this value must be set to 1.
+
 \subsection{Using scripts to start simulation}
+The above simulation can also be started using a script to make the start up process easier. To run the script enter the following commands:
+
+\begin{lstlisting}
+	cd ~/simulation/ErleRover-Scripts/
+	./basic_sim.sh 
+\end{lstlisting}
+\label{startFPV}
+This script also runs the ``start\_FPV'' script, which will bring up a window displaying a first person view from the rover's perspective. The ``start\_FPV'' script can be ran on its own anytime a simulation is running to show the first person view by running the following commands:
+\begin{lstlisting}
+cd ~/simulation/ErleRover-Scripts/
+./start_FPV.sh 
+\end{lstlisting}
 
 
-\section{Basic obstacle avoidance simulation}
+\section{Starting MAVProxy via a script}\label{MAVscript}
+MAVProxy is required when running any simulation of the rover and generally must manually be started prior to anything else. To make starting simulations easier, MAVProxy can be started via a script by using the following commands:
+\begin{lstlisting}
+	cd ~/simulation/ErleRover-Scripts/
+	./start_MAVProxy.sh 
+\end{lstlisting}
+
+This will open an xterm window that sources the setup.bash file required to launch the Ardupilot SiTL software and execute Ardupilot's sim\_vehicle script with the rover parameters already loaded into it. The sim\_vehicle script will then launch MAVProxy in the xterm window and Ardupilot in a separate window, generally also xterm, but may vary depending on your system.
+
+
+
+\section{Basic obstacle avoidance simulation using Erle Robotics script}
+This process will bring up the rover in a basic maze and start a node running a basic obstacle avoidance algorithm provide by Erle Robotics which will lead the rover through the maze without crashing into the walls.
+
+The process of starting all processes can be found in more detail at: \\ \href{http://docs.erlerobotics.com/simulation/vehicles/erle_rover/tutorial_2}{http://docs.erlerobotics.com/simulation/vehicles/erle\_rover/tutorial\_2}, but will be covered briefly here.
+
+\subsection{Manually starting all needed processes}
+To run this simulation three processes must be started:
+
+\begin{enumerate}
+	\item MAVProxy - This can be started manually, see terminal one in section \ref{MAVmanual}, or with a script, see section \ref{MAVscript}.
+	\item The launch file - This can be done with the following command:
+	\begin{lstlisting}
+	roslaunch ardupilot_sitl_gazebo_plugin rover_maze.launch
+	\end{lstlisting}
+	\item The controller node - This can be done with the following command:
+	\begin{lstlisting}
+	rosrun erle_rover_explorer erle_rover_explorer.py
+	\end{lstlisting}
+\end{enumerate}
+
+If this is done correctly you should see the rover spawn in a simple maze as can be seen in figure \ref{rovermaze1}. An overview of the maze can be seen in figure \ref{rovermaze2}.
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{Images/rover_maze_1}
+		\caption{Erle-Rover in simple maze}
+		\label{rovermaze1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.05\linewidth]{Images/rover_maze_2}
+		\caption{Simple maze overview}
+		\label{rovermaze2}
+	\end{subfigure}
+\end{figure}
+
+\subsubsection{Notes}
+\begin{enumerate}
+	\item There is no stopping condition for this simulation and the rover will just continue to drive straight once it has exited the maze.
+	
+	\item If the everything appears to have started correctly, but the rover is standing still in the maze, check to make sure MAVProxy is listening for commands on the right channel. For help with this issue see section \ref{changeMAVcommandSource}.
+	
+	\item The provided obstacle avoidance script also displays a window that represents the lidar scan and shows the current heading of the rover. An example of this can be seen in figure \ref{lidarRepresentation}.
+	
+	\item A first person view of the rover can be brought up by running the script. See section \ref{startFPV}.
+\end{enumerate}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.33]{Images/rover_maze_3}
+	\caption{Lidar scan representation and current heading}
+	\label{lidarRepresentation}
+\end{figure}
+
+\subsection{Using scripts to start simulation}
+The above simulation can also be started using a script to make the start up process easier. To run the script enter the following commands:
+
+\begin{lstlisting}
+	cd ~/simulation/ErleRover-Scripts/
+	./explorer_sim.sh 
+\end{lstlisting}
+
+\section{Maze mapping using RViz}
+The scan results from either an on board lidar or sonar sensor can be fed to RViz to generate an image of the maze as it is known to the rover. To do so, follow these steps:
+
+\begin{enumerate}
+	\item Start desired simulation - Launch all processes required for the simulation that you would like to map.
+	
+	\item 
+\end{enumerate}
+
+-----------------------------------------------------------------------------------------------\\
+Experiencing issues with hector\_mapping mapping\_default.launch currently. Will finish this section when I resolve issues.\\
+------------------------------------------------------------------------------------------------\\
+
+
 
 \section{Line follower simulation}
+Please follow directions provided at:
+\href{http://docs.erlerobotics.com/simulation/vehicles/erle_rover/tutorial_3}{http://docs.erlerobotics.com/simulation/vehicles/erle\_rover/tutorial\_3}
+
 
 \section{Object finder simulation}
 
 
 
+
+
+
+
+
+\chapter{Troubleshooting}
+\section{Rover is not responding to either manual or scripted commands}\label{changeMAVcommandSource}
+The most common issue for the rover not responding to commands as expected is that MAVProxy is listening for commands on the wrong channel. To check for this enter the following command into the MAVProxy terminal to check which channel is currently being listened to for commands:
+\begin{lstlisting}
+	param show SYSID_MYGCS
+\end{lstlisting}
+
+If the returned value is 1.0, MAVProxy is listening for commands from a scripted controller comminicating using a ROS topic.
+
+If the returned value is 255.0, MAVProxy is waiting for commands manually entered into the MAVProxy terminal. \\
+
+To change the channel that MAVProxy is listening on use the following command:
+
+\begin{lstlisting}
+	param set SYSID_MYGCS {value}
+\end{lstlisting}
+
+where value is between 1 and 255.\\
+
+Note: MAVProxy must be connected to the rover, either a physical rover or a ROS node acting as the rover, for these commands to work.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics{Images/MAVcommandSourse}
+	\caption{Checking MAVProxy command source}
+\end{figure}
 
 
 

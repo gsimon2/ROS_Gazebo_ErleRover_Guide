@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.13)  26 MAY 2017 12:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.13)  6 JUN 2017 16:01
 entering extended mode
 **./ROS_Gazebo_Installation_Guide.tex
 (ROS_Gazebo_Installation_Guide.tex
@@ -646,20 +646,20 @@ Package: placeins 2005/04/18  v 2.2
 (ROS_Gazebo_Installation_Guide.aux)
 \openout1 = `ROS_Gazebo_Installation_Guide.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 66.
-LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
 
 (C:\Users\gsimon\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -739,7 +739,7 @@ Package caption Info: End \AtBeginDocument code.
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-Package hyperref Info: Link coloring OFF on input line 66.
+Package hyperref Info: Link coloring OFF on input line 65.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -749,9 +749,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count172
 )
-LaTeX Info: Redefining \ref on input line 66.
-LaTeX Info: Redefining \pageref on input line 66.
-LaTeX Info: Redefining \nameref on input line 66.
+LaTeX Info: Redefining \ref on input line 65.
+LaTeX Info: Redefining \pageref on input line 65.
+LaTeX Info: Redefining \nameref on input line 65.
 
 (ROS_Gazebo_Installation_Guide.out) (ROS_Gazebo_Installation_Guide.out)
 \@outlinefile=\write3
@@ -760,23 +760,23 @@ LaTeX Info: Redefining \nameref on input line 66.
 \c@lstlisting=\count173
 \c__siunitx_mathsf_int=\count174
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 66.
+(Font)              <7> on input line 65.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 66.
+(Font)              <5> on input line 65.
 \c__siunitx_mathtt_int=\count175
 
-<Images/MSU_Lab_Cover_Image.png, id=115, 207.77625pt x 126.4725pt>
+<Images/MSU_Lab_Cover_Image.png, id=155, 207.77625pt x 126.4725pt>
 File: Images/MSU_Lab_Cover_Image.png Graphic file (type png)
 
 <use Images/MSU_Lab_Cover_Image.png>
-Package pdftex.def Info: Images/MSU_Lab_Cover_Image.png used on input line 68.
+Package pdftex.def Info: Images/MSU_Lab_Cover_Image.png used on input line 67.
 (pdftex.def)             Requested size: 207.77573pt x 126.47218pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 68.
+(Font)              <12> on input line 67.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 68.
+(Font)              <8> on input line 67.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 68.
+(Font)              <6> on input line 67.
  [1
 
 {C:/Users/gsimon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./Images/M
@@ -789,7 +789,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.72 \clearpage
+l.71 \clearpage
                 [1
 
 ]
@@ -800,12 +800,12 @@ Chapter 1.
 ]
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--79
+Underfull \hbox (badness 10000) in paragraph at lines 76--78
 
  []
 
 
-Overfull \hbox (29.44043pt too wide) in paragraph at lines 106--107
+Overfull \hbox (29.44043pt too wide) in paragraph at lines 105--106
 []\OT1/cmr/m/n/10 Download ArUco 1.3.0 from here []https://sourceforge.net/proj
 ects/aruco/files/1.3.0/aruco-1.3.0.tgz/download[] 
  []
@@ -818,50 +818,93 @@ Chapter 3.
 
 ] [6]
 Chapter 4.
-<Images/rover.jpg, id=290, 702.625pt x 425.59pt>
+<Images/rover.jpg, id=340, 702.625pt x 425.59pt>
 File: Images/rover.jpg Graphic file (type jpg)
  <use Images/rover.jpg>
-Package pdftex.def Info: Images/rover.jpg used on input line 306.
+Package pdftex.def Info: Images/rover.jpg used on input line 305.
 (pdftex.def)             Requested size: 245.92242pt x 148.95872pt.
 
 [7
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 336.
- [8 <./Images/rover.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 336.
- (ROS_Gazebo_Installation_Guide.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 336.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 336.
+] [8 <./Images/rover.jpg>]
+<Images/rover_maze_1.png, id=388, 1333.98375pt x 676.5275pt>
+File: Images/rover_maze_1.png Graphic file (type png)
+
+<use Images/rover_maze_1.png>
+Package pdftex.def Info: Images/rover_maze_1.png used on input line 383.
+(pdftex.def)             Requested size: 211.3883pt x 107.20398pt.
+
+<Images/rover_maze_2.png, id=389, 1391.1975pt x 580.1675pt>
+File: Images/rover_maze_2.png Graphic file (type png)
+
+<use Images/rover_maze_2.png>
+Package pdftex.def Info: Images/rover_maze_2.png used on input line 389.
+(pdftex.def)             Requested size: 246.62209pt x 102.84102pt.
+
+Overfull \hbox (11.74458pt too wide) in paragraph at lines 389--390
+ [][] 
+ []
+
+<Images/rover_maze_3.png, id=393, 501.875pt x 529.98pt>
+File: Images/rover_maze_3.png Graphic file (type png)
+
+<use Images/rover_maze_3.png>
+Package pdftex.def Info: Images/rover_maze_3.png used on input line 408.
+(pdftex.def)             Requested size: 165.61925pt x 174.89392pt.
+ [9 <./Images/rover_maze_1.png> <./Images/rover_maze_2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 430--433
+
+ []
+
+[10 <./Images/rover_maze_3.png>]
+Chapter 5.
+
+Underfull \hbox (badness 10000) in paragraph at lines 459--460
+
+ []
 
 
-Package rerunfilecheck Warning: File `ROS_Gazebo_Installation_Guide.out' has ch
-anged.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
 
-Package rerunfilecheck Info: Checksums for `ROS_Gazebo_Installation_Guide.out':
+ []
 
-(rerunfilecheck)             Before: 55E5425C03BD6461D47B220ECC4700C9;2264
-(rerunfilecheck)             After:  90462C8E402B416DD8BDF41C21306D81;2352.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
+<Images/MAVcommandSourse.png, id=424, 346.29375pt x 108.90688pt>
+File: Images/MAVcommandSourse.png Graphic file (type png)
+
+<use Images/MAVcommandSourse.png>
+Package pdftex.def Info: Images/MAVcommandSourse.png used on input line 473.
+(pdftex.def)             Requested size: 346.2929pt x 108.90659pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 479.
+ [11
+
+ <./Images/MAVcommandSourse.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 479.
+
+(ROS_Gazebo_Installation_Guide.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 479.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 479.
+Package rerunfilecheck Info: File `ROS_Gazebo_Installation_Guide.out' has not c
+hanged.
+(rerunfilecheck)             Checksum: 5C73DE236A5336BFE99BC5EDA85DC854;3097.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 479.
  ) 
 Here is how much of TeX's memory you used:
- 19038 strings out of 493334
- 359784 string characters out of 3136669
- 499557 words of memory out of 3000000
- 22238 multiletter control sequences out of 15000+200000
+ 19128 strings out of 493334
+ 361268 string characters out of 3136669
+ 500116 words of memory out of 3000000
+ 22279 multiletter control sequences out of 15000+200000
  12701 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,7n,42p,10415b,2057s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,8n,42p,10415b,2057s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/P
 rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Prog
-ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on ROS_Gazebo_Installation_Guide.pdf (9 pages, 188392 bytes).
+ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on ROS_Gazebo_Installation_Guide.pdf (12 pages, 1376638 bytes).
 PDF statistics:
- 378 PDF objects out of 1000 (max. 8388607)
- 168 named destinations out of 1000 (max. 500000)
- 235 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 500 PDF objects out of 1000 (max. 8388607)
+ 213 named destinations out of 1000 (max. 500000)
+ 335 words of extra memory for PDF output out of 10000 (max. 10000000)
 
