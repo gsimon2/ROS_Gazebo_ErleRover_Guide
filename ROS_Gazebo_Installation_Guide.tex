@@ -49,7 +49,7 @@
 %Set up chapter
 \title
 {
-	\textbf{{ROS-Gazebo-ErleRover Installation and Usage Guide}\\
+	\textbf{{ROS-Gazebo-ErleRover \& Evo-ROS \\Installation and Usage Guide}\\
 	{Michigan State University}\\}
 	\includegraphics{Images/MSU_Lab_Cover_Image.png}
 }
@@ -71,12 +71,18 @@ Anthony Clark}
 \clearpage
 
 \chapter{Introduction}
+We introduce Evo-ROS, a framework combining evolutionary search and ROS/Gazebo-based simulation. The framework provides researchers in evolutionary robotics access to the extensive support for real-world components and capabilities developed by the ROS community. Conversely, Evo-ROS enables developers in the ROS community, and more broadly robotics researchers, to take advantage of evolutionary search during design. Evolutionary algorithms can be applied to many aspects of development, including optimal configuration and
+placement of sensors and actuators, generation of compensatory behavior in case of failed/faulty components, and detection of “unlikely-but-possible” situations that might cause system failure.
+
+The Evo-ROS framework separates the GA and simulation through a socket-based interface. Messages are sent from the GA to ROS/Gazebo instances, where the robot is evaluated. A fitness score is then returned through another socket back to the GA, where the generational loop is processed. In comparison to a typical ROS/Gazebo simulation, the primary extension a user needs to implement is mapping a genome into the robotic system. In our sample code, we show how to implement this approach for a simple Roomba-like robotic system as well as the more complex Erle-Rover robot.
+
+To address performance concerns, Evo-ROS can exploit multiple levels of parallelism, including: deploying to (1) several physical machines; (2) several VMs on the same physical machine; (3) multiple ROS instances in the same VM; (4) multiple Gazebo simulations per ROS master; and (5) multiple, separate evaluations per Gazebo simulation (e.g., two robots completing tasks in separate zones–not interacting). The current Github repositories contain implementations of (2) with an Ardupilot based controller and (4) with a state machine based controller.
 
 \chapter{Installation}
 These installation directions are derived from the instructions provided by Erle Robotics found at\\ \href{http://docs.erlerobotics.com/simulation/configuring\_your\_environment}{http://docs.erlerobotics.com/simulation/configuring\_your\_environment}.
 \\
 
-It is recommend that this software is used on a machine running Ubuntu 14.04 64 bits.
+It is recommended that this software be used on a machine running Ubuntu 14.04 64 bits.
 
 \section{Configuring your Ubuntu Machine}
 These steps only have to be done once per machine.
@@ -125,12 +131,12 @@ These steps only have to be done once per machine.
 	sudo apt-get update
 \end{lstlisting}
 
-\subsubsection{Install, ROS package, build, and communication libraries. No GUI tools.:}
+\subsubsection{Install ROS package, build, and communication libraries:}
 \begin{lstlisting}
 	sudo apt-get install ros-indigo-ros-base -y
 \end{lstlisting}
 
-\subsubsection{Initialize rosdep, before you can use ROS, you will need to initialize rosdep. rosdep enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS.}
+\subsubsection{Initialize rosdep. Before you can use ROS, you will need to initialize rosdep, which enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS.}
 \begin{lstlisting}
 	sudo rosdep init
 	rosdep update
@@ -185,7 +191,7 @@ sudo apt-get install ros-indigo-rqt-common-plugins
 These steps will have to be done for each user on a machine if they would like their own local copies of the source files.
 
 \section{Download Ardupilot}
-The ArduPilot project is an open source autopilot for drones. We'll be using its code to simulate the UAVs:
+The ArduPilot project is an open source autopilot for drones, rovers, and other platforms. We'll be using its code to simulate the Unmanned ground vehicles (UGVs), specifically the Erle-Rover:
 \subsection{Compile a specific branch of ardupilot}
 \begin{lstlisting}
 	mkdir -p ~/simulation; cd ~/simulation
@@ -199,7 +205,7 @@ This was created to ease the process of starting all of the required processes u
 	git clone https://github.com/gsimon2/ErleRover-Scripts.git
 \end{lstlisting}
 \subsection{Getting permission to push commits to the remote repo}
-This is a public repo and can freely be copied, but for access to submit changes please contact Glen Simon at glen.a.simon@gmail.com.
+The above ErleRover-Scripts directory is a public repo and can freely be copied, but for access to submit changes please contact Glen Simon at glen.a.simon@gmail.com.
 
 \section{Download ros\_gazebo\_python directory, which contains the BasicBot work. Optional}
 \begin{lstlisting}
@@ -207,7 +213,7 @@ This is a public repo and can freely be copied, but for access to submit changes
 	git clone https://github.com/jaredmoore/ros_gazebo_python.git
 \end{lstlisting}
 \subsection{Getting permission to push commits to the remote repo}
-This is a public repo and can freely be copied, but for access to submit changes please contact Jared Moore at swiftfoottim@gmail.com.
+The ros\_gazebo\_python directory is a public repo and can freely be copied, but for access to submit changes please contact Jared Moore at swiftfoottim@gmail.com.
 
 
 
@@ -273,7 +279,11 @@ This is a public repo and can freely be copied, but for access to submit changes
 \end{lstlisting}
 
 
-\chapter{Usage}
+
+
+
+
+\chapter{Basic Simulation Usage}
 \section{Basic Erle-Rover simulation}
 This process will bring up the Erle-Rover in a blank world and allow you to manually enter throttle and yaw commands via the MAVProxy terminal.
 \subsection{Manually starting all needed processes}
@@ -320,7 +330,7 @@ Or backwards:
 	# in the MAVProxy prompt:
 	rc 3 1200
 \end{lstlisting}
-What we are doing here is override the 3rd channel of the RC, which corresponds to the throttle. Values go from 1100 to 1900. 1500 is to stop the throttle; so values above 1500 will make the rover move forward, and values above 1500 backwards. The same principle applies to the yaw, which is in the 1st channel of the RC. Values above 1500 will make it turn right, and below 1500 left. For instance:
+What we are doing here is overriding the 3rd channel of the RC, which corresponds to the throttle. Values are from 1100 to 1900. 1500 is to stop the throttle; so values above 1500 will make the rover move forward, and values above 1500 backwards. The same principle applies to the yaw, which is in the 1st channel of the RC. Values above 1500 will make it turn right, and below 1500 left. For instance:
 \begin{lstlisting}
 	# in the MAVProxy prompt:
 	rc 1 1400
@@ -418,6 +428,10 @@ The above simulation can also be started using a script to make the start up pro
 	./explorer_sim.sh 
 \end{lstlisting}
 
+
+
+%%%%%%%%%%%%%%%%%%%% Cutting this section until I can get it working again %%%%%%%%%%%%%
+\iffalse
 \section{Maze mapping using RViz}
 The scan results from either an on board lidar or sonar sensor can be fed to RViz to generate an image of the maze as it is known to the rover. To do so, follow these steps:
 
@@ -430,20 +444,179 @@ The scan results from either an on board lidar or sonar sensor can be fed to RVi
 -----------------------------------------------------------------------------------------------\\
 Experiencing issues with hector\_mapping mapping\_default.launch currently. Will finish this section when I resolve issues.\\
 ------------------------------------------------------------------------------------------------\\
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
+\iffalse
 \section{Line follower simulation}
 Please follow directions provided at:
 \href{http://docs.erlerobotics.com/simulation/vehicles/erle_rover/tutorial_3}{http://docs.erlerobotics.com/simulation/vehicles/erle\_rover/tutorial\_3}
 
 
 \section{Object finder simulation}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 
 
+
+\chapter{Evo-ROS}
+\section{Motivation}
+Evolutionary robotics (ER) applies the basic principles of genetic evolution to the design of robots through the application of the genetic algorithm (GA). An artificial genome specifies the robot’s control system and possibly aspects of its morphology (body). Individuals in a population are evaluated (typically in simulation) with respect to one or more tasks, with the best performing individuals selected to pass their genes
+to the next generation. Evolutionary approaches have yielded effective controllers and physical designs for a variety of crawling, swimming, and flying robots [1, 5]. Our own research has applied evolutionary algorithms to optimize both morphology and control in aquatic and terrestrial robots. Evolving robot behavior and morphology is interesting in its own right, but from an engineering perspective, a major advantage of evolutionary search is the possible discovery of solutions (as well as potential problems) that the engineer might not otherwise have considered. 
+
+Simulation is an essential component of evolutionary robotics, greatly reducing the time to evolve solutions while avoiding possible damage to physical robots. The ER community typically creates one-off simulation environments from a few different physics engines (e.g., ODE, Bullet, VoxCAD, Simulink) to conduct an experiment. Environments are sparse, generally featuring the robot and possibly a few obstacles. Tasks typically
+comprise locomotion, navigation, and basic problem solving. Robots themselves contain only a few sensors, most often developed for the specific experiment being conducted. Hence, ER tasks are often limited by the scope of the simulation environment and how much time a developer has to code obstacles, sensors, and the platform itself. Models are not necessarily shareable between developers due to a lack of standardization. While many research questions can, and have, been answered by simple simulations, it becomes difficult to address more complex questions in these environments.
+
+In contrast, the broader robotics community can address very complex tasks; the robotic systems utilize many sensor modalities to build a coherent understanding of their environment. By providing tested models of commercially available hardware, ROS/Gazebo provides a platform to study high-level behaviors while saving developer time during the design phase. Additionally, results have been shown to transfer to real robots,
+potentially addressing the “reality-gap” often encountered in ER.
+
+In the Evo-ROS project, we have developed an evolutionary framework that integrates ROS-based simulations for robot evaluation. Our current prototype includes ROS, Gazebo, Ardupilot and MAVROS. The primary goals of the project are twofold. First, the framework enables researchers in ER to take advantage ROS and related simulation tools. Second, it enables robot developers to employ evolutionary search during the design
+process.
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fill this out eventually
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffalse
+\section{Overview}
+
+
+\begin{wrapfigure}{r}{0.6\textwidth}
+	\centering \includegraphics[width=0.6\textwidth]{Images/Evo-ROS_GA_Overview.png}
+	\caption{Evo-ROS focuses on pulling the evaluation phase of the traditional GA sequence and reinforcing it with commercially available tools, such as: ROS, Gazebo, and Ardupilot.}
+	\label{Evo-ROS_GA_Overview}	
+\end{wrapfigure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.33]{Images/Evo-ROS_Forward_Workflow.png}
+	\caption{This figure shows the forward progress of work flow that Evo-ROS performs to the simulated evaluation process.}
+	\label{Evo-ROS_Forward_Workflow}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.33]{Images/Evo-ROS_Backward_Workflow.png}
+	\caption{This figure shows the work flow of Evo-ROS once the simulated evaluation is finished.}
+	\label{Evo-ROS_Backward_Workflow}
+\end{figure}
+\fi 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+\section{Usage}
+\subsection{Selecting and Configuring the GA}
+\label{Selecting and Configuring the GA}
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+	\centering \includegraphics[width=0.45\textwidth]{Images/GA_Search_Space.png}
+	\caption{The sonar positioning search space for the example GA. The search space is limited to the outside borders of the front half of the rover, so that there is ample room in the center for other sensors. For now, there is no need for sensing behind the rover, since it will only be moving forward.}
+	\label{GA_Search_Space}	
+\end{wrapfigure}
+
+There are currently several different GA options that can be selected. For this example we are going to use the script ``symmetric\_variable\_number\_sonar\_GA\_server.py''. This script is used to explore the optimal placement of sonar sensors on an Erle-Rover. This particular does have some limitations to the search space. First, placement of the sensors is limited to the front half of the rover and must be pointed towards the front. This restriction is because for the controller that we are using, the rover will only be driving in the forward direction and thus will have no need for rear facing sensors. The second limitation, is that sensors are limited to the outside border of the front half. This limitation is to allow ample room in the center of the rover for the placement of the battery and other electronics. Lastly, since the evoluation of symmetric patterns is seen often in nature, the GA will force symmetry over the Y-axis of the rover for the placement of any sensors. That is, if there is a sensor selected to be placed at the front right corner of the rover at a 10 degree angle, then there will be a matching sensor placed at the front left corner of the rover at a -10 degree angle.
+
+Once the GA is selected there are a few configuration options that should be observed. The configuration file can be opened by using the following commands:
+\begin{lstlisting}
+	cd ~/simulation/ros_catkin_ws/src/evo_ros/config/
+	vim default_config.yml  
+\end{lstlisting}
+
+This file contains the default configuration options for many aspects of Evo-ROS, but currently we are only interested in those that deal with the GA portion. The ``ga\_server'' section can be found towards the top of the file and contains different parameters for the GA, such as: the tournament size, population size, generation count, log file name, and others.
+
+After you are satisfied with the parameters being used the GA can be started by navigating to the GA directory by using the following commands:
+ \begin{lstlisting}
+	 cd ~/simulation/ros_catkin_ws/src/evo_ros/GA/
+ \end{lstlisting}
+ 
+Next you can see the running options for the GA by using the ``-h'' flag as shown below:
+ \begin{lstlisting}
+	python symmetric_variable_number_sonar_GA_server.py -h
+ \end{lstlisting}
+ 
+ Or you can start the GA in debugging mode with the following command:
+\begin{lstlisting}
+  python symmetric_variable_number_sonar_GA_server.py -d -ip 127.0.0.1
+\end{lstlisting}
+  
+ It is recommend to start the GA in debugging mode so that extra output is printed to the terminal, which allows to verify parameters and track progression better. Since the GA uses a comparatively low amount of CPU time as compared to the evaluation software, the extra printed output has a negligible effect to running time.
+ 
+ Also note that we specified the IP address that the GA should use to send out the genomes. By default, if this parameter is left blank, the GA will auto-assign it to be the IP address of the current machine.
+ 
+ If all is running correctly, the terminal output should appear close to what is shown in figure \ref{GA_terminal_output}.
+ 
+ \begin{figure}[h]
+ 	\centering
+ 	\includegraphics[scale=0.33]{Images/GA_Terminal_Output.png}
+ 	\caption{Expected output from starting the GA with the debugging options turned on.}
+ 	\label{GA_terminal_output}
+ \end{figure}
+
+
+
+\subsection{Evo-ROS Configuration Options}
+There are a number of other Evo-ROS configuration options that can be found in the configuration file descripbed in section \ref{Selecting and Configuring the GA}. The configuration file is broken into sections, each corresponding to a major part of the Evo-ROS framework. These sections include: 
+
+\begin{itemize}
+	\item sonar\_filter
+		\subitem This process is responsible for collecting all raw data from the sonar sensors in Gazebo and relying the information onto a ``/sonar\#\_filtered'' topic. This allows different filters to be applied to the raw data. One use of this is to apply different failure models to the sensors before the information is passed onto the robot's controller.
+	\item software\_manager
+		\subitem The software\_manager process is responsible for spawning and managing all of the other required processes within Evo\_ROS. It is in this set of configuration options that most of the customizations will be made. Here you can select things like: what launch files to use, as well as, which simulation managers and robotic controllers to use.
+	\item transporter
+		\subitem The transporter process creates and maintains the connection to the external GA process. 
+	\item sim\_manager
+		\subitem The sim\_manager (short for simulation manager) is the process that is responsible 
+\end{itemize}
+
+
+\subsection{Starting Evo-ROS}
+The process of starting Evo-ROS is relatively simple once the configuration options have been set. For this example, no configuration options have to be changed. To start Evo-ROS, just has to start the ``software\_manager'' script and the rest will be managed automatically. The 	``software\_manager'' script can be started by entering the following command into a new instance of the terminal:
+\begin{lstlisting}
+	rosrun evo_ros software_manager.py -ip 127.0.0.1 -d -gui
+\end{lstlisting}
+
+Please note that the ``-ip'' flag is being passed to the software\_manager with the same IP address that we that gave the GA so that the two will be connected. 
+
+The debugging option (``-d'' flag) is also set so that each process will spawn in it own window. This allows for easier understanding of what is all happening, but should not be used in production runs as it goes have an impact on the running time.
+
+The ``-gui'' flag is set as well. This option tell Gazebo that it should bring up its full GUI when it is launched, allowing you to view the rover in the simulated environment. This option should not be used in production runs, as it also impacts the running time.
+
+As with any Evo-ROS process, the software\_manager can be started with the ``-h'' help flag to display all possible options.
+
+After the software\_manager has started, one additional terminal should spawn running the Evo-ROS transporter. At this point you should have terminals open for the GA, software\_manager, and the transporter. The Evo-ROS processes should be waiting to receive information for the GA, while the GA is waiting for you to give it the okay to start sending information.
+
+
+
+\begin{figure}[h]
+	\centering
+ 	\includegraphics[scale=0.33]{Images/transporter_term_image.png}
+ 	\caption{Expected output of the transporter terminal.}
+ 	\label{transporter_term_image}
+\end{figure}
+ 
+\begin{figure}[h]
+	\centering
+  	\includegraphics[scale=0.33]{Images/software_manager_term_image.png}
+  	\caption{Expected output of the software manager terminal.}
+  	\label{software_manager_term_image}
+\end{figure}
+
+
+\subsection{Using Evo-ROS}
+Once both the GA and the software\_manager have been started, you simply have the give the GA permission to start sending information by pressing ``enter'' in that terminal. Upon pressing ``enter'' you should see the genomes from the GA being sent out. In the transporter window you will see one being received and being passed to the software\_manager. The software\_manager will then begin its process of setting up the simulated evaluation environment. This setup process includes spawning multiple xterm instances as well as a Gazebo instance (assuming the ``-d'' and ``-gui'' flags are set). This spawning process could take up to several minutes.
+
+After the set up process has been completed, you should be able to view the rover in the Gazebo environment. The controller for the rover will automatically be started and after 10-20 seconds the rover should start its mission. During this time the simulation\_manager process will be monitoring its progression through the maze and monitoring for ending criteria, such as: a crash, mission completion, or a max time limit is reached. When an ending criteria is met, the results of the evaluation will be sent back the to GA, where a fitness can be assigned to the individual.
+
+This instance of Evo-ROS will continue to receive individuals to be evaluated until the GA is either finished or canceled. 
+	
 
 
 
